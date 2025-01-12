@@ -54,13 +54,13 @@ void TraceInit()
 	// TODO: Open "trace.log" for writing (text mode).
 	// fopen_s:
 	// https://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k(stdio%2Ffopen_s);k(fopen_s);k(DevLang-C%2B%2B);k(TargetOS-Windows)&rd=true
-	erro = fopen_s(&traceFile, "Trace.log", "wt");
+	erro = fopen_s(&traceFile, "Trace.log", "wt");//open file and save error
 
 	// Error handling (implementation details to be determined by the student):
 	// https://msdn.microsoft.com/en-us/library/9t0e6085.aspx
 	// https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/strerror-s-strerror-s-wcserror-s-wcserror-s?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(STRING%2Fstrerror_s);k(strerror_s);k(DevLang-C%2B%2B);k(TargetOS-Windows)%26rd%3Dtrue&view=vs-2019
-	if (erro != 0 || traceFile == NULL) {
-		strerror_s(ErrorMsg, 1024, erro);
+	if (erro != 0 || traceFile == NULL) { // check if file was open or for error
+		strerror_s(ErrorMsg, 1024, erro); //save erro message to ErrorMsg
 		printf("Failed to open trace file Line 57 Trace.c Error: %s\n", ErrorMsg);
 	}
 	
@@ -78,14 +78,16 @@ void TraceMessage(const char * formatString, ...)
 	//   functions discussed during the Week 1 lectures.
 	  
 		va_list arg_ptr;
-
+		//va_list = where the arguments are stored
+		//arg_ptr = pointer to a list of arguments
+		
 		// Verify that the traceStream is valid.
 		if (traceFile != NULL)
 		{
-			va_start(arg_ptr, formatString);
-			vfprintf_s(traceFile, formatString, arg_ptr);
-			fprintf_s(traceFile, "\n");
-			va_end(arg_ptr);
+			va_start(arg_ptr, formatString);//
+			vfprintf_s(traceFile, formatString, arg_ptr);//
+			fprintf_s(traceFile, "\n");//
+			va_end(arg_ptr);//
 		}
 	}
 
