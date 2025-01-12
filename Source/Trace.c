@@ -63,7 +63,6 @@ void TraceInit()
 		strerror_s(ErrorMsg, 1024, erro); //save erro message to ErrorMsg
 		printf("Failed to open trace file Line 57 Trace.c Error: %s\n", ErrorMsg);
 	}
-	
 }
 
 // Output a message to the Tracing/Logging file.

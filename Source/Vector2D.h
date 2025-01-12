@@ -52,7 +52,7 @@ typedef struct DGL_Vec2 Vector2D;
 //------------------------------------------------------------------------------
 // Public Functions:
 //------------------------------------------------------------------------------
-
+/*
 // This function sets the coordinates of the 2D vector (pResult) to 0
 void Vector2DZero(Vector2D* pResult);
 
@@ -116,7 +116,7 @@ void Vector2DFromAngleRad(Vector2D* pResult, float angle);
 float Vector2DToAngleRad(const Vector2D* pVec);
 
 //------------------------------------------------------------------------------
-
+*/
 #ifdef __cplusplus
 }                       /* End of extern "C" { */
 #endif

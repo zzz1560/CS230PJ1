@@ -10,13 +10,16 @@
 //------------------------------------------------------------------------------
 
 #include "stdafx.h"
+
 #include "Stream.h"
 
 #include "Trace.h"
 
+
 //------------------------------------------------------------------------------
 // Private Constants:
 //------------------------------------------------------------------------------
+typedef FILE* Stream;
 
 //------------------------------------------------------------------------------
 // Private Structures:
@@ -25,14 +28,14 @@
 //------------------------------------------------------------------------------
 // Public Variables:
 //------------------------------------------------------------------------------
-typedef FILE* Stream;
-typedef struct DGL_Vec2 Vector2D;
+
 //------------------------------------------------------------------------------
 // Private Variables:
 //------------------------------------------------------------------------------
 
-errno_t erro;
-char ErrorMsg[1024];
+errno_t erro;//used in tandome with strerror_s to catch streamOpen erro msg
+char errorMsg[1024];//space for file 
+FILE* StreamOpen_File;//to store specific error txt
 
 //------------------------------------------------------------------------------
 // Private Function Declarations:
@@ -54,12 +57,20 @@ char ErrorMsg[1024];
 //	 Pointer to a FILE object if the file was opened successfully.
 Stream StreamOpen(const char* filePath) {
 
-	erro = fopen_s(&filePath, "Rt");
-	if (erro != 0 || traceFile == NULL) {
-		TraceMessage("Error: StreamOpen could not open file %s; %s", filePath, errorMsg);
+	if (filePath == NULL) {
+		return NULL;
 	}
-}
 
+	erro = fopen_s(&StreamOpen_File, filePath, "rt");
+	if (erro != 0) {
+		strerror_s(errorMsg, 1024, erro);
+		TraceMessage("Error: StreamOpen could not open file %s; %s", filePath, errorMsg);
+		return NULL;
+	}
+
+	return StreamOpen_File;
+}
+/*
 // Read a single integer from a stream.
 // (NOTE: Verify that the stream is valid first.)
 // (NOTE: Use fscanf_s() to scan the input stream for an integer.)
@@ -68,6 +79,7 @@ Stream StreamOpen(const char* filePath) {
 // Returns:
 //	 0 if the stream was not opened succesfully;
 //	 otherwise, an integer value read from the file.
+
 int StreamReadInt(Stream stream) {
 
 }
@@ -81,6 +93,7 @@ int StreamReadInt(Stream stream) {
 //	 If the stream was opened succesfully,
 //	   then return a float value read from the file,
 //	   else return 0.
+
 float StreamReadFloat(Stream stream) {
 
 }
@@ -94,6 +107,7 @@ float StreamReadFloat(Stream stream) {
 //	 If the stream and vector pointer are both valid,
 //	   then fill the vector with two float values (x & y),
 //	   else do nothing (optionally, write an error message to the trace log).
+
 void StreamReadVector2D(Stream stream, Vector2D* vector) {
 
 }
@@ -103,13 +117,14 @@ void StreamReadVector2D(Stream stream, Vector2D* vector) {
 // (PRO TIP: Avoid dangling pointers by setting the FILE pointer to NULL.)
 // Params:
 //	 stream = The file stream to be closed.
+
 void StreamClose(Stream* stream) {
 
 }
 
 //------------------------------------------------------------------------------
 
+*/
 //------------------------------------------------------------------------------
 // Private Functions:
-//------------------------------------------------------------------------------
-
+//---------------------------------------------------------------------------

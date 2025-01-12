@@ -97,11 +97,13 @@ static void StubSystemUpdate(float dt)
 // Render any objects associated with the Stub System.
 static void StubSystemRender(void)
 {
+
 }
 
 // Shutdown the Stub System.
 //   (HINT: Free any allocated resources and/or close any opened files).
 static void StubSystemExit(void)
 {
+
 }
 
