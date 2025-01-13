@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	StubScene.c
+// File Name:	Level2SScene.c
 // Author(s):	Joren Mahal (joren.mahal)
 // Project:		Project 0
 // Course:		CS230S25
@@ -13,8 +13,8 @@
 
 #include "Scene.h"
 #include "SceneSystem.h"
-#include "StubScene.h"
-/*
+#include "Level2Scene.h"
+
 //------------------------------------------------------------------------------
 // Private Constants:
 //------------------------------------------------------------------------------
@@ -23,14 +23,14 @@
 // Private Structures:
 //------------------------------------------------------------------------------
 
-typedef struct StubScene
+typedef struct Level2SScene
 {
 	// WARNING: The base class must always be included first.
 	Scene	base;
 
 	// Add any scene-specific variables second.
 
-} StubScene;
+} Level2SScene;
 
 //------------------------------------------------------------------------------
 // Public Variables:
@@ -44,21 +44,21 @@ typedef struct StubScene
 // Private Function Declarations:
 //------------------------------------------------------------------------------
 
-static void StubSceneLoad(void);
-static void StubSceneInit(void);
-static void StubSceneUpdate(float dt);
-static void StubSceneExit(void);
-static void StubSceneUnload(void);
-static void StubSceneRender(void);
+static void Level2SSceneLoad(void);
+static void Level2SSceneInit(void);
+static void Level2SSceneUpdate(float dt);
+static void Level2SSceneExit(void);
+static void Level2SSceneUnload(void);
+static void Level2SSceneRender(void);
 
 //------------------------------------------------------------------------------
 // Instance Variable:
 //------------------------------------------------------------------------------
 
-static StubScene instance =
+static Level2SScene instance =
 {
 	// Initialize the base structure:
-	{ "Stub", StubSceneLoad, StubSceneInit, StubSceneUpdate, StubSceneRender, StubSceneExit, StubSceneUnload },
+	{ "Level2S", Level2SSceneLoad, Level2SSceneInit, Level2SSceneUpdate, Level2SSceneRender, Level2SSceneExit, Level2SSceneUnload },
 
 	// Initialize any scene-specific variables:
 };
@@ -67,10 +67,10 @@ static StubScene instance =
 // Public Functions:
 //------------------------------------------------------------------------------
 
-// Get the instance of the Stub Scene.
+// Get the instance of the Level2S Scene.
 // Returns:
 //	 Pointer to the base Scene structure for this derived Scene.
-const Scene* StubSceneGetInstance(void)
+const Scene* Level2SSceneGetInstance(void)
 {
 	return &(instance.base);
 }
@@ -80,19 +80,19 @@ const Scene* StubSceneGetInstance(void)
 //------------------------------------------------------------------------------
 
 // Load any resources used by the scene.
-static void StubSceneLoad(void)
+static void Level2SSceneLoad(void)
 {
 }
 
 // Initialize the entities and variables used by the scene.
-static void StubSceneInit()
+static void Level2SSceneInit()
 {
 }
 
 // Update the the variables used by the scene.
 // Params:
 //	 dt = Change in time (in seconds) since the last game loop.
-static void StubSceneUpdate(float dt)
+static void Level2SSceneUpdate(float dt)
 {
 	// Tell the compiler that the 'dt' variable is unused.
 	UNREFERENCED_PARAMETER(dt);
@@ -103,17 +103,17 @@ static void StubSceneUpdate(float dt)
 }
 
 // Render any objects associated with the scene.
-void StubSceneRender(void)
+void Level2SSceneRender(void)
 {
 }
 
 // Free any objects associated with the scene.
-static void StubSceneExit()
+static void Level2SSceneExit()
 {
 }
 
 // Unload any resources used by the scene.
-static void StubSceneUnload(void)
+static void Level2SSceneUnload(void)
 {
 }
-*/
+
