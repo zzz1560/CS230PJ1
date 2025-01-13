@@ -1,0 +1,16 @@
+Engine: Init
+PlatformSystem: Init
+SceneSystem: Init
+Engine: Update
+Stub: Load
+Stub: Init
+Stub: update
+Engine: Render
+Stub: Render
+Engine: Update
+Stub: Exit
+Stub: Unload
+Engine: Render
+Engine: Exit
+SceneSystem: Exit
+PlatformSystem: Exit

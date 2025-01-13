@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	StubScene.c
+// File Name:	SandboxScene.c
 // Author(s):	Joren Mahal (joren.mahal)
 // Project:		Project 0
 // Course:		CS230S25
@@ -10,11 +10,11 @@
 //------------------------------------------------------------------------------
 
 #include "stdafx.h"
-
+/*
 #include "Scene.h"
 #include "SceneSystem.h"
-#include "StubScene.h"
-/*
+#include "SandboxScene.h"
+
 //------------------------------------------------------------------------------
 // Private Constants:
 //------------------------------------------------------------------------------
@@ -23,14 +23,14 @@
 // Private Structures:
 //------------------------------------------------------------------------------
 
-typedef struct StubScene
+typedef struct SandboxScene
 {
 	// WARNING: The base class must always be included first.
 	Scene	base;
 
 	// Add any scene-specific variables second.
 
-} StubScene;
+} SandboxScene;
 
 //------------------------------------------------------------------------------
 // Public Variables:
@@ -44,21 +44,21 @@ typedef struct StubScene
 // Private Function Declarations:
 //------------------------------------------------------------------------------
 
-static void StubSceneLoad(void);
-static void StubSceneInit(void);
-static void StubSceneUpdate(float dt);
-static void StubSceneExit(void);
-static void StubSceneUnload(void);
-static void StubSceneRender(void);
+static void SandboxSceneLoad(void);
+static void SandboxSceneInit(void);
+static void SandboxSceneUpdate(float dt);
+static void SandboxSceneExit(void);
+static void SandboxSceneUnload(void);
+static void SandboxSceneRender(void);
 
 //------------------------------------------------------------------------------
 // Instance Variable:
 //------------------------------------------------------------------------------
 
-static StubScene instance =
+static SandboxScene instance =
 {
 	// Initialize the base structure:
-	{ "Stub", StubSceneLoad, StubSceneInit, StubSceneUpdate, StubSceneRender, StubSceneExit, StubSceneUnload },
+	{ "Stub", SandboxSceneLoad, SandboxSceneInit, SandboxSceneUpdate, SandboxSceneRender, SandboxSceneExit, SandboxSceneUnload },
 
 	// Initialize any scene-specific variables:
 };
@@ -70,7 +70,7 @@ static StubScene instance =
 // Get the instance of the Stub Scene.
 // Returns:
 //	 Pointer to the base Scene structure for this derived Scene.
-const Scene* StubSceneGetInstance(void)
+const Scene* SandboxSceneGetInstance(void)
 {
 	return &(instance.base);
 }
@@ -80,19 +80,19 @@ const Scene* StubSceneGetInstance(void)
 //------------------------------------------------------------------------------
 
 // Load any resources used by the scene.
-static void StubSceneLoad(void)
+static void SandboxSceneLoad(void)
 {
 }
 
 // Initialize the entities and variables used by the scene.
-static void StubSceneInit()
+static void SandboxSceneInit()
 {
 }
 
 // Update the the variables used by the scene.
 // Params:
 //	 dt = Change in time (in seconds) since the last game loop.
-static void StubSceneUpdate(float dt)
+static void SandboxSceneUpdate(float dt)
 {
 	// Tell the compiler that the 'dt' variable is unused.
 	UNREFERENCED_PARAMETER(dt);
@@ -103,17 +103,17 @@ static void StubSceneUpdate(float dt)
 }
 
 // Render any objects associated with the scene.
-void StubSceneRender(void)
+void SandboxSceneRender(void)
 {
 }
 
 // Free any objects associated with the scene.
-static void StubSceneExit()
+static void SandboxSceneExit()
 {
 }
 
 // Unload any resources used by the scene.
-static void StubSceneUnload(void)
+static void SandboxSceneUnload(void)
 {
 }
 

@@ -83,10 +83,10 @@ void TraceMessage(const char * formatString, ...)
 		// Verify that the traceStream is valid.
 		if (traceFile != NULL)
 		{
-			va_start(arg_ptr, formatString);//
-			vfprintf_s(traceFile, formatString, arg_ptr);//
-			fprintf_s(traceFile, "\n");//
-			va_end(arg_ptr);//
+			va_start(arg_ptr, formatString);// Initializas loop
+			vfprintf_s(traceFile, formatString, arg_ptr);// prints diffrent formatString
+			fprintf_s(traceFile, "\n");//prints next line
+			va_end(arg_ptr);//ends loop
 		}
 	}
 

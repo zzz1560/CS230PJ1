@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	Stub.c
+// File Name:	Stream.c
 // Author(s):	Joren Mahal (joren.mahal)
 // Project:		Project 0
 // Course:		CS230S25
@@ -20,6 +20,8 @@
 // Private Constants:
 //------------------------------------------------------------------------------
 typedef FILE* Stream;
+
+typedef struct DGL_Vec2 Vector2D;
 
 //------------------------------------------------------------------------------
 // Private Structures:
@@ -55,6 +57,7 @@ FILE* StreamOpen_File;//to store specific error txt
 // Returns:
 //	 NULL if filePath is NULL or the file could not be opened.
 //	 Pointer to a FILE object if the file was opened successfully.
+//tested
 Stream StreamOpen(const char* filePath) {
 
 	if (filePath == NULL) {
@@ -70,7 +73,7 @@ Stream StreamOpen(const char* filePath) {
 
 	return StreamOpen_File;
 }
-/*
+
 // Read a single integer from a stream.
 // (NOTE: Verify that the stream is valid first.)
 // (NOTE: Use fscanf_s() to scan the input stream for an integer.)
@@ -79,9 +82,18 @@ Stream StreamOpen(const char* filePath) {
 // Returns:
 //	 0 if the stream was not opened succesfully;
 //	 otherwise, an integer value read from the file.
-
+//tested
 int StreamReadInt(Stream stream) {
+	if (stream == NULL) {
+		return 0;
+	}
 
+	int val;
+	if (fscanf_s(stream, "%d", &val) == 1){
+		return val;
+	}
+
+	return 0;
 }
 
 // Read a single float from a stream.
@@ -93,9 +105,18 @@ int StreamReadInt(Stream stream) {
 //	 If the stream was opened succesfully,
 //	   then return a float value read from the file,
 //	   else return 0.
-
+//tested
 float StreamReadFloat(Stream stream) {
+	if (stream == NULL) {
+		return 0;
+	}
 
+	float val;
+	if (fscanf_s(stream, "%f", &val) == 1) {
+		return val;
+	}
+
+	return 0;
 }
 
 // Read the data for a Vector2D from a stream.
@@ -108,23 +129,50 @@ float StreamReadFloat(Stream stream) {
 //	   then fill the vector with two float values (x & y),
 //	   else do nothing (optionally, write an error message to the trace log).
 
+/*
 void StreamReadVector2D(Stream stream, Vector2D* vector) {
+	
+	if (stream != 0 || vector == NULL) { // check if file was open or for error
+		char ErrorMsg[1024];
+		strerror_s(ErrorMsg, 1024, erro); //save erro message to ErrorMsg
+		printf("Failed in StreamReadVector2D Error: %s\n", ErrorMsg);
+		return;
+	}
+		
+	
+	if (vector == NULL) {
+		return;
+	}
+
+	if (StreamReadFloat(stream) == 0) {
+		return;
+	}
+		vector->x = StreamReadFloat(stream);
+		vector->y = StreamReadFloat(stream);
+	
 
 }
+*/
 
 // Close an opened stream.
 // (NOTE: Do not attempt to close the stream if the pointer is null.)
 // (PRO TIP: Avoid dangling pointers by setting the FILE pointer to NULL.)
 // Params:
 //	 stream = The file stream to be closed.
-
+//tested
 void StreamClose(Stream* stream) {
+	//remember pointers are wich line its defined, no pointer is value it holds need to check both.
+	if (stream == NULL || *stream == NULL) {
+		return;
+	}
 
+	fclose(*stream);
+	*stream = NULL;
 }
 
 //------------------------------------------------------------------------------
 
-*/
+
 //------------------------------------------------------------------------------
 // Private Functions:
 //---------------------------------------------------------------------------

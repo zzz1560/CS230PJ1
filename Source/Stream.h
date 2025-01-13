@@ -11,7 +11,7 @@
 //   https://learn.microsoft.com/en-us/dotnet/standard/io/file-path-formats
 //
 //------------------------------------------------------------------------------
-#include "stdafx.h"
+
 
 #pragma once
 
@@ -32,6 +32,7 @@ extern "C" {
 //------------------------------------------------------------------------------
 
 typedef FILE* Stream;
+
 typedef struct DGL_Vec2 Vector2D;
 
 //------------------------------------------------------------------------------
@@ -62,7 +63,7 @@ typedef struct DGL_Vec2 Vector2D;
 //	 Pointer to a FILE object if the file was opened successfully.
 Stream StreamOpen(const char * filePath);
 
-/*
+
 // Read a single integer from a stream.
 // (NOTE: Verify that the stream is valid first.)
 // (NOTE: Use fscanf_s() to scan the input stream for an integer.)
@@ -83,7 +84,7 @@ int StreamReadInt(Stream stream);
 //	   then return a float value read from the file,
 //	   else return 0.
 float StreamReadFloat(Stream stream);
-
+/*
 // Read the data for a Vector2D from a stream.
 // (NOTE: Verify that the stream and vector pointer are valid first.)
 // (HINT: Use StreamReadFloat() to read the x and y values, in sequence.)
@@ -94,14 +95,14 @@ float StreamReadFloat(Stream stream);
 //	   then fill the vector with two float values (x & y),
 //	   else do nothing (optionally, write an error message to the trace log).
 void StreamReadVector2D(Stream stream, Vector2D* vector);
-
+*/
 // Close an opened stream.
 // (NOTE: Do not attempt to close the stream if the pointer is null.)
 // (PRO TIP: Avoid dangling pointers by setting the FILE pointer to NULL.)
 // Params:
 //	 stream = The file stream to be closed.
 void StreamClose(Stream * stream);
-*/
+
 //------------------------------------------------------------------------------
 
 #ifdef __cplusplus
