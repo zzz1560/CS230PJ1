@@ -40,7 +40,7 @@ typedef struct Scene Scene;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Public Variables: 
+// Public Variables:
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ typedef struct Scene Scene;
 // Get the instance of the Stub Scene.
 // Returns:
 //	 Pointer to the base Scene structure for this derived Scene.
-const Scene* Level2SceneGetInstance(void);
+const Scene* SandboxSceneGetInstance(void);
 
 //------------------------------------------------------------------------------
 

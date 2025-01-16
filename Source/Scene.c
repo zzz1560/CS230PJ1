@@ -94,7 +94,7 @@ void SceneUpdate(const Scene* scene, float dt)
 	if (scene && (scene->update != NULL))
 	{
 		// TODO: Call TraceMessage, passing the format string "%s: Update" and the name of the scene.
-		TraceMessage("%s: update", scene->name);
+		TraceMessage("%s: Update", scene->name);
 		// Execute the Update function.
 		(*scene->update)(dt);
 	}

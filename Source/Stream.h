@@ -84,7 +84,7 @@ int StreamReadInt(Stream stream);
 //	   then return a float value read from the file,
 //	   else return 0.
 float StreamReadFloat(Stream stream);
-/*
+
 // Read the data for a Vector2D from a stream.
 // (NOTE: Verify that the stream and vector pointer are valid first.)
 // (HINT: Use StreamReadFloat() to read the x and y values, in sequence.)
@@ -95,7 +95,7 @@ float StreamReadFloat(Stream stream);
 //	   then fill the vector with two float values (x & y),
 //	   else do nothing (optionally, write an error message to the trace log).
 void StreamReadVector2D(Stream stream, Vector2D* vector);
-*/
+
 // Close an opened stream.
 // (NOTE: Do not attempt to close the stream if the pointer is null.)
 // (PRO TIP: Avoid dangling pointers by setting the FILE pointer to NULL.)

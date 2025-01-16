@@ -14,7 +14,7 @@
 #include "Stream.h"
 
 #include "Trace.h"
-
+#include "DGL.h"
 
 //------------------------------------------------------------------------------
 // Private Constants:
@@ -65,9 +65,10 @@ Stream StreamOpen(const char* filePath) {
 	}
 
 	erro = fopen_s(&StreamOpen_File, filePath, "rt");
+
 	if (erro != 0) {
 		strerror_s(errorMsg, 1024, erro);
-		TraceMessage("Error: StreamOpen could not open file %s; %s", filePath, errorMsg);
+		TraceMessage("Error: StreamOpen could not open file %s", filePath, errorMsg);
 		return NULL;
 	}
 
@@ -112,6 +113,7 @@ float StreamReadFloat(Stream stream) {
 	}
 
 	float val;
+
 	if (fscanf_s(stream, "%f", &val) == 1) {
 		return val;
 	}
@@ -129,30 +131,21 @@ float StreamReadFloat(Stream stream) {
 //	   then fill the vector with two float values (x & y),
 //	   else do nothing (optionally, write an error message to the trace log).
 
-/*
+
 void StreamReadVector2D(Stream stream, Vector2D* vector) {
 	
-	if (stream != 0 || vector == NULL) { // check if file was open or for error
-		char ErrorMsg[1024];
-		strerror_s(ErrorMsg, 1024, erro); //save erro message to ErrorMsg
-		printf("Failed in StreamReadVector2D Error: %s\n", ErrorMsg);
-		return;
-	}
-		
-	
-	if (vector == NULL) {
+	if (stream == NULL || vector == NULL) { // check if file was open or for error
+		TraceMessage("Failed StreamReadVector2D Error: vector or stream faild");
 		return;
 	}
 
-	if (StreamReadFloat(stream) == 0) {
-		return;
-	}
-		vector->x = StreamReadFloat(stream);
-		vector->y = StreamReadFloat(stream);
+	vector->x = StreamReadFloat(stream);
+
+	vector->y = StreamReadFloat(stream);
 	
 
 }
-*/
+
 
 // Close an opened stream.
 // (NOTE: Do not attempt to close the stream if the pointer is null.)

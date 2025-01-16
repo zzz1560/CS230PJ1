@@ -52,7 +52,7 @@ typedef struct DGL_Vec2 Vector2D;
 //------------------------------------------------------------------------------
 // Public Functions:
 //------------------------------------------------------------------------------
-/*
+
 // This function sets the coordinates of the 2D vector (pResult) to 0
 void Vector2DZero(Vector2D* pResult);
 
@@ -72,14 +72,17 @@ void Vector2DSub(Vector2D* pResult, const Vector2D* pVec0, const Vector2D* pVec1
 // (NOTE: Care must be taken when pResult = pVec0!)
 void Vector2DNormalize(Vector2D* pResult, const Vector2D* pVec0);
 
+
 // In this function, pResult will be the vector pVec0 scaled by the value 'scale'
 void Vector2DScale(Vector2D* pResult, const Vector2D* pVec0, float scale);
 
 // In this function, pResult will be the vector pVec0 scaled by 'scale' and added to pVec1
 void Vector2DScaleAdd(Vector2D* pResult, const Vector2D* pVec0, float scale, const Vector2D* pVec1);
 
+
 // In this function, pResult will be the vector pVec0 scaled by 'scale' and pVec1 will be subtracted from it
 void Vector2DScaleSub(Vector2D* pResult, const Vector2D* pVec0, float scale, const Vector2D* pVec1);
+
 
 // This function returns the length of the vector pVec0
 float Vector2DLength(const Vector2D* pVec0);
@@ -116,7 +119,7 @@ void Vector2DFromAngleRad(Vector2D* pResult, float angle);
 float Vector2DToAngleRad(const Vector2D* pVec);
 
 //------------------------------------------------------------------------------
-*/
+
 #ifdef __cplusplus
 }                       /* End of extern "C" { */
 #endif

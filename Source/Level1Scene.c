@@ -14,6 +14,8 @@
 #include "Scene.h"
 #include "SceneSystem.h"
 #include "Level1Scene.h"
+#include "Level2Scene.h"
+#include "Trace.h"
 
 #include "Stream.h"
 //------------------------------------------------------------------------------
@@ -60,7 +62,7 @@ static void Level1SceneRender(void);
 static Level1Scene instance =
 {
 	// Initialize the base structure:
-	{ "Stub", Level1SceneLoad, Level1SceneInit, Level1SceneUpdate, Level1SceneRender, Level1SceneExit, Level1SceneUnload },
+	{ "Level1", Level1SceneLoad, Level1SceneInit, Level1SceneUpdate, Level1SceneRender, Level1SceneExit, Level1SceneUnload },
 
 	// Initialize any scene-specific variables:
 	0
@@ -85,16 +87,18 @@ float i = 0;
 // Load any resources used by the scene.
 static void Level1SceneLoad(void)
 {
-	FILE *OpenFile = StreamOpen("Data/Level1_Lives.txt");
 
+	//----------------------------------------------------// proper file 
+	FILE* OpenFile = StreamOpen("Data/Level1_Lives.txt");
 
-	if (OpenFile != NULL) {
+	if (OpenFile != NULL) {//check to make sure file openend
 		instance.numLives = StreamReadInt(OpenFile);//saves numLives from file
 		StreamClose(&OpenFile);//closes file
 	}
+	else {//sends to trace log
+		TraceMessage("Level1_Lives.txt not opened");
+	}
 
-	
-	
 }
 
 // Initialize the entities and variables used by the scene.
@@ -111,10 +115,10 @@ static void Level1SceneUpdate(float dt)
 	// Tell the compiler that the 'dt' variable is unused.
 	UNREFERENCED_PARAMETER(dt);
 	instance.numLives--;
-	if (instance.numLives >= 0) {
+	if (instance.numLives <= 0) {
 		// NOTE: This call causes the engine to exit immediately.  Make sure to remove
 		//   it when you are ready to test out a new scene.
-		SceneSystemSetNext(NULL);
+		SceneSystemSetNext(Level2SceneGetInstance());
 	}
 }
 
