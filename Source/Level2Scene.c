@@ -32,6 +32,7 @@ typedef struct Level2Scene
 	Scene	base;
 
 	// Add any scene-specific variables second.
+	//?	Add two new variables to the Level2Scene structure:
 	int numLives;
 	int numHealth;
 
@@ -66,6 +67,7 @@ static Level2Scene instance =
 	{ "Level2", Level2SceneLoad, Level2SceneInit, Level2SceneUpdate, Level2SceneRender, Level2SceneExit, Level2SceneUnload },
 
 	// Initialize any scene-specific variables:
+	//?	Initialize the new variables to 0 in the structure initializer. 
 	0,0
 
 };
@@ -93,6 +95,7 @@ static void Level2SceneLoad(void)
 
 
 	if (OpenFilelv2 != NULL) {//check to make sure file openend
+		//?	Read the initial value of “numLives” from a file named “Level2_Lives.txt” 
 		instance.numLives = StreamReadInt(OpenFilelv2);//saves numLives from file
 		StreamClose(&OpenFilelv2);//closes file
 	}
@@ -110,6 +113,7 @@ static void Level2SceneInit()
 	FILE* OpenFilelv22 = StreamOpen("Data/Level2_Health.txt");
 
 	if (OpenFilelv22 != NULL) {//check to make sure file openend
+		//?	Read the initial value of “numHealth” from a file named.
 		instance.numHealth = StreamReadInt(OpenFilelv22);//saves numLives from file
 		StreamClose(&OpenFilelv22);//closes file
 	}
@@ -126,13 +130,19 @@ static void Level2SceneUpdate(float dt)
 	// Tell the compiler that the 'dt' variable is unused.
 	UNREFERENCED_PARAMETER(dt);
 
+	//?	Decrement “numHealth” by 1.
 	instance.numHealth--;
+	//?	If “numHealth” <= 0:
 	if (instance.numHealth <= 0) {
+		//•	Decrement “numLives” by 1.
 		instance.numLives--;
+		//•	If “numLives” > 0
 		if (instance.numLives > 0) {
+			//o	Restart the scene.
 			SceneRestart();
 		}
 		else {
+			//•	Else Switch the Scene System to “Sandbox”.
 			SceneSystemSetNext(SandboxSceneGetInstance());
 		}
 

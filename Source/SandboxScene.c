@@ -139,7 +139,7 @@ static void SandboxSceneUpdate(float dt)
 		//StreamOpen()
 
 		//tests
-		Test test = { 1,2 };
+		Test test = {1,2};
 	//o	Call Vector2DZero
 		Vector2DZero(&test);
 		SandboxSceneTraceVector("Vector2DZero", &test);

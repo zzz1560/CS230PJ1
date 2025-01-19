@@ -68,7 +68,7 @@ Stream StreamOpen(const char* filePath) {
 
 	if (erro != 0) {
 		strerror_s(errorMsg, 1024, erro);
-		TraceMessage("Error: StreamOpen could not open file %s", filePath, errorMsg);
+		TraceMessage("Error: StreamOpen could not open file %s; %s", filePath, errorMsg);
 		return NULL;
 	}
 

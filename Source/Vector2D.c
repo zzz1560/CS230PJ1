@@ -46,6 +46,9 @@ typedef struct DGL_Vec2 Vector2D;
 
 // This function sets the coordinates of the 2D vector (pResult) to 0
 void Vector2DZero(Vector2D* pResult) {
+	if (!pResult) {
+		return;
+	}
 	pResult->x = 0;
 	pResult->y = 0;
 
@@ -53,6 +56,9 @@ void Vector2DZero(Vector2D* pResult) {
 
 // This function sets the coordinates of the 2D vector (pResult) to x & y
 void Vector2DSet(Vector2D* pResult, float x, float y) {
+	if (!pResult) {
+		return;
+	}
 	pResult->x = x;
 	pResult->y = y;
 }
@@ -60,6 +66,9 @@ void Vector2DSet(Vector2D* pResult, float x, float y) {
 
 // In this function, pResult will be set to the opposite of pVec0 (e.g. x = -x & y = -y)
 void Vector2DNeg(Vector2D* pResult, const Vector2D* pVec0) {
+	if (!pResult || !pVec0) {
+		return;
+	}
 	pResult->x = pVec0->x*-1;
 	pResult->y = pVec0->y*-1;
 }
@@ -67,12 +76,18 @@ void Vector2DNeg(Vector2D* pResult, const Vector2D* pVec0) {
 
 // In this function, pResult will be the sum of pVec0 and pVec1 (x result = x0 + x1)
 void Vector2DAdd(Vector2D* pResult, const Vector2D* pVec0, const Vector2D* pVec1) {
+	if (!pResult || !pVec0 || !pVec1) {
+		return;
+	}
 	pResult->x = pVec0->x + pVec1->x;
 	pResult->y = pVec0->y + pVec1->y;
 }
 
 // In this function, pResult will be the difference between pVec0 and pVec1 (specifically, pVec0 - pVec1)
 void Vector2DSub(Vector2D* pResult, const Vector2D* pVec0, const Vector2D* pVec1) {
+	if (!pResult || !pVec0 || !pVec1) {
+		return;
+	}
 	pResult->x = pVec0->x - pVec1->x;
 	pResult->y = pVec0->y - pVec1->y;
 }
@@ -80,6 +95,9 @@ void Vector2DSub(Vector2D* pResult, const Vector2D* pVec0, const Vector2D* pVec1
 // In this function, pResult will be the unit vector of pVec0
 // (NOTE: Care must be taken when pResult = pVec0!)
 void Vector2DNormalize(Vector2D* pResult, const Vector2D* pVec0) {
+	if (!pResult||!pVec0) {
+		return;
+	}
 	float temp = sqrtf((pResult->x*pResult->x) + (pResult->y*pResult->y));
 	pResult->x = pVec0->x/temp;
 	pResult->y = pVec0->y/temp;
@@ -87,6 +105,9 @@ void Vector2DNormalize(Vector2D* pResult, const Vector2D* pVec0) {
 
 // In this function, pResult will be the vector pVec0 scaled by the value 'scale'
 void Vector2DScale(Vector2D* pResult, const Vector2D* pVec0, float scale) {
+	if (!pResult || !pVec0) {
+		return;
+	}
 	//scaled
 	pResult->x = pVec0->x * scale;
 	pResult->y = pVec0->y * scale;
@@ -95,6 +116,9 @@ void Vector2DScale(Vector2D* pResult, const Vector2D* pVec0, float scale) {
 
 // In this function, pResult will be the vector pVec0 scaled by 'scale' and added to pVec1
 void Vector2DScaleAdd(Vector2D* pResult, const Vector2D* pVec0, float scale, const Vector2D* pVec1) {
+	if (!pResult || !pVec0 || !pVec1) {
+		return;
+	}
 	//create save values
 	float ansx = 0;
 	float ansy = 0;
@@ -115,6 +139,9 @@ void Vector2DScaleAdd(Vector2D* pResult, const Vector2D* pVec0, float scale, con
 
 // In this function, pResult will be the vector pVec0 scaled by 'scale' and pVec1 will be subtracted from it
 void Vector2DScaleSub(Vector2D* pResult, const Vector2D* pVec0, float scale, const Vector2D* pVec1) {
+	if (!pResult  || !pVec0 || !pVec1) {
+		return;
+	}
 	//create save values
 	float ansx = 0;
 	float ansy = 0;
@@ -135,6 +162,9 @@ void Vector2DScaleSub(Vector2D* pResult, const Vector2D* pVec0, float scale, con
 
 // This function returns the length of the vector pVec0
 float Vector2DLength(const Vector2D* pVec0) {
+	if (!pVec0) {
+		return 0;
+	}
 	float ans = sqrtf((pVec0->x * pVec0->x) + (pVec0->y * pVec0->y));
 	return ans;
 }
@@ -142,6 +172,9 @@ float Vector2DLength(const Vector2D* pVec0) {
 // This function returns the square of pVec0's length.
 // NOTE: The square root function must NOT be called by this function.
 float Vector2DSquareLength(const Vector2D* pVec0) {
+	if (!pVec0) {
+		return 0;
+	}
 	float ans = (pVec0->x * pVec0->x) + (pVec0->y * pVec0->y);
 	
 	return ans;
@@ -149,6 +182,9 @@ float Vector2DSquareLength(const Vector2D* pVec0) {
 
 // This function returns the distance between two points.
 float Vector2DDistance(const Vector2D* pVec0, const Vector2D* pVec1) {
+	if (!pVec0 || !pVec1) {
+		return 0;
+	}
 	float ans = sqrtf(((pVec0->x - pVec1->x) * (pVec0->x - pVec1->x)) + ((pVec0->y - pVec1->y) * (pVec0->y - pVec1->y)));
 	
 	return ans;
@@ -157,6 +193,9 @@ float Vector2DDistance(const Vector2D* pVec0, const Vector2D* pVec1) {
 // This function returns the distance squared between two points.
 // NOTE: The square root function must NOT be called by this function.
 float Vector2DSquareDistance(const Vector2D* pVec0, const Vector2D* pVec1) {
+	if (!pVec0 || !pVec1) {
+		return 0;
+	}
 	float ans = ((pVec0->x - pVec1->x) * (pVec0->x - pVec1->x)) + ((pVec0->y - pVec1->y) * (pVec0->y - pVec1->y));
 	
 	return ans;
@@ -164,6 +203,9 @@ float Vector2DSquareDistance(const Vector2D* pVec0, const Vector2D* pVec1) {
 
 // This function returns the dot product between pVec0 and pVec1
 float Vector2DDotProduct(const Vector2D* pVec0, const Vector2D* pVec1) {
+	if (!pVec0 || !pVec1) {
+		return 0;
+	}
 	float ans = ((pVec0->x * pVec1->x) + (pVec0->y * pVec1->y));
 	return ans;
 }
@@ -175,6 +217,9 @@ float Vector2DDotProduct(const Vector2D* pVec0, const Vector2D* pVec1) {
 //   #define _USE_MATH_DEFINES
 //   #include <math.h>
 void Vector2DFromAngleDeg(Vector2D* pResult, float angle) {
+	if (!pResult) {
+		return;
+	}
 	float rad = ((angle * (float)M_PI) / 180.0f);
 	pResult->x = cosf(rad);
 	pResult->y = sinf(rad);
@@ -183,7 +228,9 @@ void Vector2DFromAngleDeg(Vector2D* pResult, float angle) {
 // This function computes the coordinates of the unit vector represented by the angle "angle", which is in Radians.
 // HINT: x = cos(angle), y = sin(angle).
 void Vector2DFromAngleRad(Vector2D* pResult, float angle) {
-
+	if (!pResult) {
+		return;
+	}
 	pResult->x = cosf(angle);
 	pResult->y = sinf(angle);
 }
@@ -192,6 +239,9 @@ void Vector2DFromAngleRad(Vector2D* pResult, float angle) {
 // HINT: Angle (radians) = atan2f(direction Y, direction X).
 // NOTE: If the pointer is NULL, then return 0.0f.
 float Vector2DToAngleRad(const Vector2D* pVec) {
+	if (!pVec) {
+		return 0.0f;
+	}
 	if (pVec == NULL) {
 		return 0.0f;
 	}
